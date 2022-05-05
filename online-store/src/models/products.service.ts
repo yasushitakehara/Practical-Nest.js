@@ -18,7 +18,15 @@ export class ProductsService {
     return this.productsRepository.findOne(id);
   }
 
+  findByIds(ids: string[]): Promise<Product[]> {
+    return this.productsRepository.findByIds(ids);
+  }
+
   createOrUpdate(product: Product): Promise<Product> {
     return this.productsRepository.save(product);
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.productsRepository.delete(id);
   }
 }
